@@ -5,7 +5,6 @@ include('models/contacts.php');
 $data = array("_status" => 0, "_msj" => "", "_data" => array(), "_action" => NULL);
 class Contacts{
 
-
 	//Create and edit Contacts
 	public function saveContact(){
 		global $data;
@@ -65,7 +64,7 @@ class Contacts{
 			}
 		}
 		else{
-			$data['_msj'] = "The prop 'ID' doesn't exist or is incorrect.";
+			$data['_msj'] = "The prop 'ID' doesn't exist or is incorrect.".json_encode($_POST);
 		}
 
 		return json_encode(utf8ize($data));
@@ -104,7 +103,6 @@ class Contacts{
 		$contact = new Contacts_model();
 
 		$result = $contact->listContacts(trim($start), trim($count));
-		// return json_encode(utf8ize($result));
 
 		if ($result) {
 			$data['_status'] = 1;

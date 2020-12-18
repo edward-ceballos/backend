@@ -29,13 +29,14 @@ class Connection{
              PRIMARY KEY (`id`)
           ) CHARACTER SET utf8 COLLATE utf8_general_ci";
 
-          $conn->exec($table);
+          $conn->query($table);
+          self::$objConn = $conn;
 
       } catch (PDOException $e) {
           echo 'Error Connection: ' . $e->getMessage();
+          exit();
       }
 
-      self::$objConn = $conn;
     }
 
     return self::$objConn;
